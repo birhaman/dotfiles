@@ -1,0 +1,11 @@
+(defcfg
+  input  (device-file "<path to your keyboard input>")
+  output (uinput-sink "KMonad kbd"))
+(defsrc
+  esc  f1   f2  f3
+  `
+  tab
+  lctl
+  lsft
+  lhyp lmet lalt        spc     ralt cmps rctl
+  )

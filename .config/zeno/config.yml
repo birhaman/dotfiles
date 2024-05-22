@@ -1,0 +1,205 @@
+# config.yml
+snippets:
+  # Syscalls
+  - name: ps regexp terminate all
+    keyword: killby
+    snippet: ps -A | grep '{{process_name}}' | awk '{print $1}' | xargs kill -9 $1
+
+  # Nixpkgs
+  - name: upconfig switch
+    keyword: uc
+    snippet: upconfig switch{{-mode}} --impure --flake $ringdir/nixos-config#aspire -I nixos-config=$ringdir/nixos-config/flake.nix
+
+  - name: nix search
+    keyword: nsr
+    snippet: nix search nixpkgs
+
+  - name: nix-gc
+    keyword: ngc
+    snippet: sudo nix-collect-garbage --delete-old && sudo nix store gc
+
+  # nix profile
+  - name: nix profile install
+    keyword: npi
+    snippet: nix profile install nixpkgs#{{-pkg}}
+  - name: nix profile install
+    keyword: n`i
+    snippet: npm install
+
+  - name: nix profile remove
+    keyword: npr
+    snippet: nix profile remove legacyPackages.x86_64-linux.{{}}
+  - name: nix profile list
+    keyword: npl
+    snippet: nix profile list
+
+  - name: nix registry
+    keyword: nreg
+    snippet: nix registry list
+
+  # nix actions
+  - name: nix build
+    keyword: n`b
+    snippet: nix build
+  - name: nix flake
+    keyword: nf
+    snippet: nix flake
+  - name: nix env
+    keyword: n`e
+    snippet: nix-env
+  - name: nix develop
+    keyword: n`d
+    snippet: nix develop -c $SHELL
+
+  - name: nix-instantiate --eval
+    keyword: nine
+    snippet: nix-instantiate --eval
+  - name: nix-channel
+    keyword: nch
+    snippet: nix-channel
+
+  # Direnv
+  - name: direnv allow
+    keyword: dir$
+    snippet: direnv allow
+  - name: devour
+    keyword: d$
+    snippet: devour
+
+
+  # Git snippets
+  - name: git status
+    keyword: gs
+    snippet: git status --short --branch
+
+  - name: git add
+    keyword: ga
+    snippet: git add
+  - name: git reset
+    keyword: ga-
+    snippet: git reset
+
+  - name: git branch
+    keyword: gib
+    snippet: git branch
+
+  - name: git clone
+    keyword: g-
+    snippet: git clone
+
+  - name: git config
+    keyword: gic
+    snippet: git config --global
+  - name: git config scopes
+    keyword: gicfs
+    snippet: git config --list --show-scope
+
+  - name: git checkout
+    keyword: gi+B
+    snippet: git checkout -b
+
+  - name: git remote
+    keyword: gir
+    snippet: git remote add
+
+  - name: git push
+    keyword: gp
+    snippet: git push
+
+  # Hledger
+  - name: hledger actions
+    keyword: h
+    snippet: hledger
+
+
+  # Placeholder containing snippets
+  - name: git commit message
+    keyword: gq
+    snippet: git commit -m '{{commit_message}}'
+  - name: git rebase
+    keyword: gq-
+    snippet: git commit -m '{{commit_message}}'
+
+  - name: "null"
+    keyword: "null"
+    snippet: ">/dev/null 2>&1"
+    # auto expand condition
+    # If not defined, it is only valid at the beginning of a line.
+    context:
+      # buffer: ''
+      lbuffer: '.+\s'
+      # rbuffer: ''
+
+  - name: branch
+    keyword: B
+    snippet: git symbolic-ref --short HEAD
+    context:
+      lbuffer: '^git\s+checkout\s+'
+    evaluate: true # eval snippet
+
+
+  # Triggers message, suggests nixpkgs package contenting binary
+  - name: command-not-found
+    keyword: cnf
+    snippet: command-not-found
+  - name: hostnamectl
+    keyword: honctl
+    snippet: hostnamectl
+
+   # Authority
+  - name: usermod
+    keyword: uod
+    snippet: sudo usermod -aG {{-set}} $USER
+  - name: fast sudo
+    keyword: se
+    snippet: sudo
+
+   # Systemd
+  - name: systemctl
+    keyword: sctl
+    snippet: systemctl
+  - name: journalctl unit
+    keyword: jctl
+    snippet: sudo journalctl -f -u '{{unit_name}}'
+
+  - name: xev output
+    keyword: xevk
+    snippet: xev | fgrep "keysym"
+
+
+
+    # Completions
+completions:
+  # simple sourceCommand, no callback
+  - name: kill signal
+    patterns:
+      - "^kill -s $"
+    sourceCommand: "kill -l | tr ' ' '\\n'"
+    options:
+      --prompt: "'Kill Signal> '"
+
+  # use excludePatterns and callback
+  - name: kill pid
+    patterns:
+      - "^kill( .*)? $"
+    excludePatterns:
+      # -l, -n or -s is followed by SIGNAL instead of PID
+      - " -[lns] $"
+    sourceCommand: "LANG=C ps -ef | sed 1d"
+    options:
+      --multi: true
+      --prompt: "'Kill Process> '"
+    callback: "awk '{print $2}'"
+
+  # Use null (\0) termination Input / Output
+  - name: chdir
+    patterns:
+      - "^cd $"
+    sourceCommand: "find . -path '*/.git' -prune -o -maxdepth 5 -type d -print0"
+    options:
+      # Added --read0 if null termination is used in `sourceCommand` output.
+      --read0: true
+      --prompt: "'Chdir> '"
+      --preview: "cd {} && ls -a | sed '/^[.]*$/d'"
+    callback: "cut -z -c 3-"
+    callbackZero: true  # null termination is used in `callback` I/O

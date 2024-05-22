@@ -1,0 +1,33 @@
+# .aliases
+
+  # Profile aliases
+alias sudo='doas'
+# Nix Package manager
+alias upconfig='sudo nixos-rebuild'
+alias ffch='fastfetch'
+
+# Nix Shells
+alias exec.elf='patchelf --set-interpreter $(patchelf --print-interpreter `which find`) \'
+
+ # Networking
+alias proxy.onboard='export http_proxy="$PROXY_CURRENT" https_proxy="$PROXY_CURRENT" ftp_proxy="$PROXY_CURRENT"'
+alias proxy.unset='unset http_proxy https_proxy ftp_proxy'
+
+  # Tools
+alias ls='ls -aFh --color=auto --group-directories-first'
+alias lu='ls -laFh --color=auto --group-directories-first'
+alias tree='tree -a'
+alias du='du -h --max-depth=1 | sort -h'
+alias grep='grep --color=auto'
+alias xevk='xev | fgrep "keysym"'
+ # Mediagrep
+alias audl='yt-dlp --extract-audio --audio-quality 8 --output "%(title)s.%(ext)s" --audio-format'
+alias vidl='yt-dlp --buffer-size 2048 --embed-chapters --geo-bypass --output "%(title)s.%(ext)s" --yes-playlist --format'
+
+ # Inheritance of VoidLinux for special cases.
+# X Binary Package System
+alias xine='xbps-query -Rs "" | cut --delimiter " " --fields 1-2 | fzf -m --preview "xbps-query ->'
+# Use 'xin -fS' when the objective is set to reinstall a package;
+alias xrmv='xbps-query -l | cut --delimiter " " --fields 1-2 | fzf -m --preview "xbps-query -R {2>'
+alias xsync='doas xbps-install -S'
+alias sv='doas sv'

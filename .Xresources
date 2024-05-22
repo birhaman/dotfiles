@@ -1,0 +1,61 @@
+ ! -- .Xresources - libXft, Cairo resources
+ Xft.dpi: 96.0
+ ! 146.0
+ Xft.antialias: true
+ Xft.hinting: true
+ Xft.hintstyle: hintslight
+ Xft.autohint: false
+
+ Emacs*useXIM:false
+
+ ! XTerm properties
+ XTerm.vt100.foreground: #ffffff
+ XTerm.vt100.background: #1e1e1e
+ XTerm.vt100.geometry: 80x38
+ XTerm.vt100.cursorColor: cyan
+ XTerm.vt100.saveLines: 800
+ XTerm.termName: xterm-256full
+
+ XTerm.vt100.scrollBar: true
+ XTerm.vt100.scrollbar.width: 5
+
+ XTerm.vt100.metaSendsEscape: true
+ XTerm.vt100.backarrowKey: false
+ XTerm.ttyModes: erase ^?
+ XTerm.vt100.Translations: #override \n
+  Ctrl <Key>C: copy-selection(CLIPBOARD) \n
+  Ctrl <Key>V: insert-selection(CLIPBOARD) \n
+  Shift <KeyPress> Insert: insert-selection(CLIPBOARD)
+
+ XTerm.vt100.faceName: Liberation
+ XTerm.vt100.fontSiez: 10
+ Xterm.vt100.renderFont: true
+ ! CJK Glyph Fonts
+ !XTerm.vt100.faceName: DejaVu Sans Mono:style=Book:antialias=false
+! XTerm.vt100.faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
+ !XTerm.vt100.faceSize: 8
+! XTerm.vt100.translations: #override \n\
+!    Ctrl <Key>M: maximize() \n\
+!    Ctrl <Key>R: restore()
+! XTerm.vt100.cursorColor:  #d3d0c8
+! XTerm.vt100.color0:       #2d2d2d
+! XTerm.vt100.color8:       #747369
+! XTerm.vt100.color1:       #f2777a
+! XTerm.vt100.color9:       #f2777a
+! XTerm.vt100.color2:       #99cc99
+! XTerm.vt100.color10:      #99cc99
+! XTerm.vt100.color3:       #ffcc66
+! XTerm.vt100.color11:      #ffcc66
+! XTerm.vt100.color4:       #6699cc
+! XTerm.vt100.color12:      #6699cc
+! XTerm.vt100.color5:       #cc99cc
+! XTerm.vt100.color13:      #cc99cc
+! XTerm.vt100.color6:       #66cccc
+! XTerm.vt100.color14:      #66cccc
+! XTerm.vt100.color7:       #d3d0c8
+! XTerm.vt100.color15:      #f2f0ec 
+
+! Tk properties
+ .tkTheme: tile-qt
+
+
