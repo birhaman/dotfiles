@@ -1,0 +1,9 @@
+21:53:04: Tenacity 1.3.3
+21:53:04: Error: Failed to load shared library 'libavformat.so.60': libavformat.so.60: cannot open shared object file: No such file or directory
+21:53:04: Error: Failed to load libavformat.so.60 ((null))
+21:53:04: Error: Couldn't find symbol 'av_oformat_next' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: av_oformat_next
+21:53:04: Error: Couldn't find symbol 'av_register_all' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: av_register_all
+21:53:04: Error: Couldn't find symbol 'avcodec_decode_audio4' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: avcodec_decode_audio4
+21:53:04: Error: Couldn't find symbol 'avcodec_encode_audio2' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: avcodec_encode_audio2
+21:53:04: Error: Couldn't find symbol 'avcodec_register_all' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: avcodec_register_all
+21:53:04: Error: Couldn't find symbol 'av_codec_next' in a dynamic library: /nix/store/585lsgdh1mr377xr8laqg96in0j4638y-ffmpeg-5.1.3-lib/lib/libavformat.so.59: undefined symbol: av_codec_next

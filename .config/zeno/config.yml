@@ -8,7 +8,7 @@ snippets:
   # Nixpkgs
   - name: upconfig switch
     keyword: uc
-    snippet: upconfig switch{{-mode}} --impure --flake $ringdir/nixos-config#aspire -I nixos-config=$ringdir/nixos-config/flake.nix
+    snippet: upconfig switch{{-mode}} --impure --flake $RING_DIR/nixos-config#aspire -I nixos-config=$RING_DIR/nixos-config/flake.nix
 
   - name: nix search
     keyword: nsr
@@ -101,10 +101,13 @@ snippets:
   - name: git remote
     keyword: gir
     snippet: git remote add
+  - name: git rebase
+    keyword: gr/
+    snippet: git rebase --abort
 
   - name: git push
     keyword: gp
-    snippet: git push
+    snippet: git push -uf
 
   # Hledger
   - name: hledger actions
